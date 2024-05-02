@@ -56,9 +56,10 @@ public class MainActivity extends Activity {
      * Désérialise les ressources
      */
     private void deserialiserRessources() {
-        this.operande_1 = (EditText) this.findViewById(R.id.et_op1);
-        this.operande_2 = (EditText) this.findViewById(R.id.et_op2);
-        this.operateur = (EditText) this.findViewById(R.id.et_oper);
+        operande_1 = findViewById(R.id.et_op1);
+        operande_2 = findViewById(R.id.et_op2);
+        operateur = findViewById(R.id.et_oper);
+        bt_calculer = findViewById(R.id.bt_calculer);
 
         // A compléter
     }
@@ -78,31 +79,41 @@ public class MainActivity extends Activity {
         bt_calculer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sNb1 = operande_1.getText().toString();
+                String sNb2 = operande_2.getText().toString();
+                String sOp = operateur.getText().toString();
 
-                /** On récupère le nombre de l'EditText
-                 * sous forme d'une chaine de caractère à partir du
-                 * widget EditText
-                 *
-                 * Important : le toString est obligatoire
-
-                 */
-                String sNb = operande_1.getText().toString();
-                String sNb1 = operande_2.getText().toString();
-                String sNb2 = operateur.getText().toString();
-
-
-                int number = Integer.parseInt(sNb);
                 int number1 = Integer.parseInt(sNb1);
                 int number2 = Integer.parseInt(sNb2);
 
-
                 Intent intent = new Intent(MainActivity.this, Calcul.class);
-                    intent.putExtra("Calculer", number + number1);
-                    startActivity(intent);
-                    // Conversion de sNb en un nombre entier
-
-                    // A compléter
+                int resultat = calculer(number1, number2, sOp);
+                intent.putExtra("Calculer", resultat);
+                startActivity(intent);
             }
         });
+    }
+
+    private int calculer(int op1, int op2, String operateur) {
+        int resultat = 0;
+        switch (operateur) {
+            case "+":
+                resultat = op1 + op2;
+                break;
+            case "-":
+                resultat = op1 - op2;
+                break;
+            case "*":
+                resultat = op1 * op2;
+                break;
+            case "/":
+                if (op2 != 0) {
+                    resultat = op1 / op2;
+                } else {
+
+                }
+                break;
+        }
+        return resultat;
     }
 }

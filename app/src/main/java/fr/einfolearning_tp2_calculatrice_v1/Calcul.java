@@ -3,7 +3,10 @@ package fr.einfolearning_tp2_calculatrice_v1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import fr.einfolearning_tp2_v1.R;
 
 /**
  * Created by B. LEMAIRE on 2019.
@@ -13,15 +16,18 @@ public class Calcul extends Activity {
 
     // Affichage du résultat du calcul
     private TextView tv_calcul;
+    private Button bt_retour;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_calcul);
 
         // A compléter
 
         /**
          * Désérialisation des ressources
          */
+        afficherResultat();
 
         deserialiserRessources();
 
@@ -62,14 +68,26 @@ public class Calcul extends Activity {
      */
     private void deserialiserRessources() {
         // A compléter
-        this.tv_calcul = (TextView) this.findViewById(R.id.operande_1);
+        tv_calcul = findViewById(R.id.tv_res);
+        bt_retour = findViewById(R.id.bt_retour);
+    }
 
+    private void afficherResultat() {
+        int resultat = getIntent().getIntExtra("Calculer", 0);
+        tv_calcul.setText(String.valueOf(resultat));
     }
 
     /**
      * Mise en place des écouteurs
      */
     private void initConnection() {
+
+        bt_retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         // A compléter
     }
 
