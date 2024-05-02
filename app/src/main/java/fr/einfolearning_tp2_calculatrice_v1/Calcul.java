@@ -1,6 +1,7 @@
 package fr.einfolearning_tp2_calculatrice_v1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -35,11 +36,13 @@ public class Calcul extends Activity {
          * cette activité
          */
         // A Compléter
+        Intent intent = getIntent();
 
 
         /**
          * Récupération des extras
          */
+        int nombre = intent.getIntExtra("NUMBER", 0);
 
         // A compléter
 
@@ -47,6 +50,7 @@ public class Calcul extends Activity {
         /**
          * Calcul du résultat et affichage du résultat
          */
+        tv_calcul.setText(String.valueOf(nombre));
 
         // A compléter
 
@@ -58,6 +62,8 @@ public class Calcul extends Activity {
      */
     private void deserialiserRessources() {
         // A compléter
+        this.tv_calcul = (TextView) this.findViewById(R.id.operande_1);
+
     }
 
     /**
