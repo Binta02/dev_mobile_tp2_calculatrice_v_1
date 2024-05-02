@@ -48,7 +48,7 @@ public class Calcul extends Activity {
         /**
          * Récupération des extras
          */
-        int nombre = intent.getIntExtra("NUMBER", 0);
+        int nombre = intent.getIntExtra("Calculer", 0);
 
         // A compléter
 
